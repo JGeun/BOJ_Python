@@ -1,0 +1,10 @@
+A = int(input())
+B = input()
+
+first = A*int(B[2])
+second = A*int(B[1])
+third = A*int(B[0])
+print(first)
+print(second)
+print(third)
+print(third*100+second*10+first)
