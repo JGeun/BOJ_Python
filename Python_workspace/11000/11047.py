@@ -4,12 +4,12 @@ moneyUnit = []
 for _ in range(N):
     moneyUnit.append(int(sys.stdin.readline()))
 
-moneyUnit.reverse()
 count = 0
-for unit in moneyUnit:
-    if K == 0:
-        sys.stdout.write(str(count)+'\n')
-        break
-    elif K >= unit:
+for i in range(1, N+1):
+    unit = moneyUnit[-i]
+
+    if K >= unit:
         count += K // unit
         K %= unit
+
+sys.stdout.write(str(count)+'\n')
