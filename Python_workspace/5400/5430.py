@@ -5,18 +5,28 @@ T = int(sys.stdin.readline())
 for _ in range(T):
     p = sys.stdin.readline().rstrip().replace('RR', '')
     n = int(sys.stdin.readline())
-    numList = sys.stdin.readline()[1:-2].split(",")
+    numList = deque()
+    nums = sys.stdin.readline()[1:-2].split(",")
+    for num in nums:
+        numList.append(num)
     isError = False
+    reverse = 0
+
     for i in range(len(p)):
         if p[i] == 'R':
-            numList.reverse()
+            reverse += 1
         else:
             if n == 0 or len(numList) == 0:
                 isError = True
                 break
             else:
-                numList.pop(0)
+                if reverse % 2 == 1:
+                    numList.pop()
+                else:
+                    numList.popleft()
     if isError:
         sys.stdout.write('error\n')
     else:
-        sys.stdout.write('['+ ','.join(numList)+']\n')
+        if reverse%2 == 1:
+            numList.reverse()
+        sys.stdout.write('[' + ','.join(numList)+']\n')
